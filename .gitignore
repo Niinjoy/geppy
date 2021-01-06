@@ -109,3 +109,4 @@ examples/sr/tmp_*.*
 docs/build/doctrees/
 
 .vscode/
+.DS_Store

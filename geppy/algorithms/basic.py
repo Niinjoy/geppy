@@ -95,8 +95,10 @@ def gep_simple(population, toolbox, n_generations=100, n_elites=1,
 
     for gen in range(n_generations + 1):
         # evaluate: only evaluate the invalid ones, i.e., no need to reevaluate the unchanged ones
-        invalid_individuals = [ind for ind in population if not ind.fitness.valid]
-        fitnesses = toolbox.map(toolbox.evaluate, invalid_individuals)
+        # invalid_individuals = [ind for ind in population if not ind.fitness.valid]
+        invalid_individuals = [ind for ind in population]# if not ind.fitness.valid] # niin edited for valid individuals revaluate
+        # fitnesses = toolbox.map(toolbox.evaluate, invalid_individuals)
+        fitnesses = toolbox.map(toolbox.evaluate, invalid_individuals, [gen for i in range(len(invalid_individuals))]) # niin edited to get gen information
         for ind, fit in zip(invalid_individuals, fitnesses):
             ind.fitness.values = fit
 
